@@ -1,3 +1,3 @@
 
-Please go to : https://hmmalek.github.io/PersonalWebsite/ for the website.
+Please click : <a href="https://hmmalek.github.io/PersonalWebsite/">here</a> for the website.
 

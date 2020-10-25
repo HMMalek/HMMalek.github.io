@@ -1,3 +1,14 @@
+#menu{
+  margin-left: 70%;
+  margin-top: -8%;
+}
+#body{
+  width:68%;
+  margin-top: -2%;
+}
+#menuTi{
+  color: #030F3B;
+}
 h1{
   margin-left: 250px;
   margin-top: -90px;
@@ -15,7 +26,6 @@ h4{
 }
 
 body {
-  margin-top: 10px;
   margin-left: 10px;
 }
 

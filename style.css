@@ -1,16 +1,30 @@
 #menu{
-  margin-left: 70%;
-  margin-top: -8%;
+  margin-left: 1%;
 }
 #body{
+  margin-left: 25%;
   width:68%;
-  margin-top: -2%;
+  margin-top: -8%;
 }
 #menuTi{
   color: #030F3B;
 }
+#firstHW{
+  border: 1px solid black;
+}
+#cmd{
+  margin-top: 1%;
+  background-color:#B4B6BD;
+  margin-bottom: 1%;
+  font-style: italic;
+}
+th{
+  border: 1px solid black;
+  width: 30px;
+  height: 30px;
+}
 h1{
-  margin-left: 250px;
+  margin-left: 40%;
   margin-top: -90px;
   color: #030F3B;
 }
@@ -25,23 +39,7 @@ h4{
   color: #3F65F9;
 }
 
-body {
-  margin-left: 10px;
-}
-
 #lora {
     width: 200px;
     height: 150px;
 }
-
-#gate {
-  width:150px ;
-  height:100px ;
-}
-
-#sensor {
-  width:150px ;
-  height:100px ;
-}
-
-

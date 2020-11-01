@@ -5,7 +5,7 @@
     <img id="lora" src="assets/img/gallery/LORAWAN2.png"/>
     <h1>Lorawan Network Deployement</h1>
   </head>
-  
+
   <body>
     <br/><br/>
       <div id="menu">
@@ -34,15 +34,15 @@
        My internship came to further enrich this solution and test one of the Edge servers Atos created in 2019, the BullSequana Edge, with a LoRaWAN module.
        The goal was setting up a LoraWan Network for temperature transmission, going through the study of the Lora network and its component, finding the corresponding lorawan network server,
        installing it on the BullSequana, then making it into as Rancher module on the platform of Codex Smart Edge.</br></br>
-       This project contains two parts: 
+       This project contains two parts:
        The first one is the deployement of the network on a raspberry pi and the second part is the deployment on a more advanced hardware <a href="https://atos.net/fr/solutions/bullsequana-edge-fr"> BullSequana Edge</a>.
     </p>
 
-     <h2 id="PD">Project development</h2> 
+     <h2 id="PD">Project development</h2>
 
       <h3 id="hw">Hardware used</h3>
          <h4>First part of the project</h4>
-           <table>
+           <table id="firstHW">
               <tr>
                 <th>1Gate ATIM: Rasperry Pi 3 and Lora concentrator(SX1308 and SX1257 chips)</th>
                 <th><img id="gate" src="assets/img/gallery/1gate.jpg"/></th>
@@ -55,39 +55,63 @@
               <th> Ethernet cable</th>
             </tr>
             <tr>
-              <th> Keyboard</th>  
+              <th> Keyboard</th>
             </tr>
             <tr>
-              <th>Screen</th>   
+              <th>Screen</th>
             </tr>
          </table>
-
         <h4>Second part of the project</h4>
         <ul>
           <li>BullSequana Edge: Lora concentrator(SX1308/SX1301 and SX125x chips)</li>
           <li>Laptop</li>
           <li>Temperature sensor ACW-TH/W8</li>
         <ul>
-  
+
       <h3 id="sw">Installation and Configuration</h3>
-        The OS used in both of theinstallations is Debian 10, there are no specific prerequesties.
+      The OS used in both of the installations is Debian 10, there are no specific prerequesties.
+      <h4 id="lns">LoraWan Server</h4>
+      The LoraWan Network Server (LNS) used for this project is <a href="https://github.com/gotthardp/lorawan-server">Gotthardp's</a> programmed in Erlang.
+      The installation instructions are detailed in the documentation in the .
+
+
         <h4>Gateway and packet forwarder</h4>
             For the Gateway part of the network, we need to install a driver for the Lora concentrator and the packet forwarder linking the server to the gateway.
             The software used is the following:
-            <h5>First part of the project</h5>            
+            <h5>First part of the project</h5>
           <ul>
              <li><a href="https://github.com/Lora-net/lora_gateway">Semtech driver</a></li>
             <li><a href="https://github.com/Lora-net/packet_forwarder">Semtech packet forwarder</a></li>
-          </ul>
+          </ul><br>
+
+          First we need to enable the SPI interface on the RasperryPI using the following command:
+          <div id="cmd">Sudo raspi-config </div> to access the configuration menu then navigate to <div id="cmd"> Interfacing options>SPI> enable:YES </div>
+          then reboot the raspberry:
+          <div id="cmd">reboot</div>
+          Install the packet Semtech driver:
+          <div id="cmd">git clone https://github.com/Lora-net/lora_gateway </div>
+          Connect the driver to the Reset Pin Control (usually 25):
+          <div id="cmd"> cd lora_gateway <br> ./reset_lgw.sh start 25 <br></div>
+          then test that it's corretly installed:
+          <div id="cmd">./util_tx_test -r 1257 -f 867.9</div>
+          Once the test is successful, make sure to stop it and move to installation of the packet forwarder:
+          <div id="cmd">git clone https://github.com/Lora-net/packet_forwarder </div>
+          Update the local_conf.json file with the gateway's ID:
+          <div id="cmd">./update_gwid.sh local_conf.json</div>
+          Then update the global_conf.json fil with the serevr's adress and the UDP ports:
+          <div id="cmd">nano global_conf.json</div><br>
+          <img id="gate" src="assets/img/global_conf.png"/><br><br>
+          Launch the packet forwarder to test it:
+          <div id="cmd">./lora_pkt_fwd/lora_pkt_fwd</div>
+
            <h5>Second part of the project</h5>
             <ul>
              <li> <a href="https://github.com/Lora-net/picoGW_hal">The gateway driver</a></li>
               <li> <a href="https://github.com/Lora-net/picoGW_packet_forwarder">The packet forwarder</a></li>
-            </ul> 
-        <h4 id="lns">LoraWan Server</h4>
-        The LoraWan Network Server (LNS) used for this project is <a href="https://github.com/gotthardp/lorawan-server">Gotthardp's</a> programmed in Erlang.
+            </ul>
+
 
           </div>
-    
+
   </body>
 </html>
